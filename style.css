@@ -1,0 +1,105 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    /* background-color: black; */
+    /* color: white; */
+    /* width: 100vw;
+    height: 100vh; */
+}
+.nav{
+    width: 100%;
+    height: 60px;
+    margin-top: 5px;
+    /* background-color: black; */
+}
+.nav ul{
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.nav ul > :not(:nth-child(3)) {
+  flex: 1;
+}
+.nav ul li{
+    list-style-type: none;
+    
+}
+.logo img{
+    width: 40px;
+    margin-left: 20px;;
+}
+ul .home{
+    width: 40px;
+    margin-left: 20px;
+}
+#line{
+    width: 2px;
+    height: 30px;
+    margin-left: 10px;
+    background-color: black;
+}
+#install {
+    
+    white-space: nowrap;
+    margin-right: 11px;
+}
+#install img{
+    width: 14px;
+    margin-right: 2px;
+}
+.line1{
+    width: 2px;
+    height: 30px;
+    margin-left: 10px;
+    background-color: black;
+}
+
+
+/* search bar */
+.outline {
+    border: 2px solid red;
+    width: 504px;
+    height: 49px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.outline input{
+    flex: 1;        
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+}
+.outline img{
+    width: 35px;
+    margin: 10px;
+}
+.login{
+        font-size: 19px;
+    width: 104px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 46px;
+    background-color: rgb(247, 16, 0);
+    border-radius: 20px;
+}
+
+/* main */
+.left {
+    width: 30vw;
+    height: 100%;
+    background-color: black;
+    border-radius: 8px;
+    margin-left: 4px;
+}
+.right{
+    border-radius: 8px;
+    width: 70vw;
+    height: 100%;
+    background-color: black;
+}
