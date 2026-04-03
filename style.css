@@ -92,14 +92,80 @@ ul .home{
 /* main */
 .left {
     width: 30vw;
-    height: 100%;
-    background-color: black;
+    height: 568px;
+    background-color: rgb(255, 255, 255);
     border-radius: 8px;
     margin-left: 4px;
 }
+.left .heading{
+    width: 100%;
+    height: 79px;
+    background-color: red;
+}
+.left.heading h3{
+
+}
+.left .options{
+    overflow-y:scroll;
+    background-color: brown;
+    width: 100%;
+    height: 300px;
+
+}
+.options .Cplay{
+    background-color: black;
+    width: 365px;
+    height: 223px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+.options .Bpodcast{
+    background-color: black;
+    width: 365px;
+    height: 223px;
+    border-radius: 8px;
+}
+.guide{
+    padding: 20px 10px 0px 13px;
+    display: flex;
+    align-items: center;
+    font-size:small;
+    font-weight: 200;
+}
+.guide pre{
+    margin-top: 10px;
+}
+.guide2{
+    padding:20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size:small;
+    font-weight: 200;
+}
+.guide2 .button{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    width: 78px;
+    height: 27px;
+    border-radius: 16px;
+    position: absolute;
+    top: 61px;
+    right: 265px;
+}
+.guide2 a {
+    margin-left: 10px;
+}
+.guide2 a:hover{
+    
+}
+
 .right{
     border-radius: 8px;
     width: 70vw;
-    height: 100%;
-    background-color: black;
+    height: 568px;
+    background-color: rgb(255, 255, 255);
 }
