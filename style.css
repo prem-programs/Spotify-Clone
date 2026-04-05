@@ -3,8 +3,8 @@
     padding: 0;
 }
 body{
-    /* background-color: black; */
-    /* color: white; */
+    background-color: black; */
+    /* color: white;
     /* width: 100vw;
     height: 100vh; */
 }
@@ -20,17 +20,20 @@ body{
     align-items:center;
 }
 .nav ul > :not(:nth-child(3)) {
-  flex: 1;
+    filter: invert(1);
+    flex: 1;
 }
 .nav ul li{
     list-style-type: none;
     
 }
 .logo img{
+    /* filter: invert(1); */
     width: 40px;
     margin-left: 20px;;
 }
 ul .home{
+    /* filter: invert(1); */
     width: 40px;
     margin-left: 20px;
 }
@@ -38,7 +41,7 @@ ul .home{
     width: 2px;
     height: 30px;
     margin-left: 10px;
-    background-color: black;
+    background-color: rgb(255, 255, 255);
 }
 #install {
     
@@ -53,13 +56,13 @@ ul .home{
     width: 2px;
     height: 30px;
     margin-left: 10px;
-    background-color: black;
+    background-color: rgb(255, 255, 255);
 }
 
 
 /* search bar */
 .outline {
-    border: 2px solid red;
+    border: 2px solid rgb(255, 255, 255);
     width: 504px;
     height: 49px;
     border-radius: 30px;
@@ -75,17 +78,18 @@ ul .home{
     font-size: 16px;
 }
 .outline img{
+    filter: invert(1);
     width: 35px;
     margin: 10px;
 }
 .login{
-        font-size: 19px;
+    font-size: 19px;
     width: 104px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 46px;
-    background-color: rgb(247, 16, 0);
+    background-color: rgb(255, 255, 255);
     border-radius: 20px;
 }
 
@@ -100,14 +104,14 @@ ul .home{
 .left .heading{
     width: 100%;
     height: 79px;
-    background-color: red;
+    background-color: #121212;
 }
 .left.heading h3{
 
 }
 .left .options{
     overflow-y:scroll;
-    background-color: brown;
+    background-color: #121212;
     width: 100%;
     height: 300px;
 
@@ -178,14 +182,30 @@ ul .home{
     gap: 3px;
     padding-top: 32px;
     display: flex;
+    
 }
 
 .card {
+    position:relative;
     border-radius: 12px;
     border: 1px solid red;
-    width: 170px;
+    width: 148px;
     padding: 13px;
 }
+.card svg{
+    position: absolute;
+    top: 107px;
+    right: 18px;
+    opacity: 0;
+
+}
+
+.card:hover svg{  
+    opacity: 100%;
+}
+
+
+
 .card h3,h4{
     margin-left: 5px;
 }
@@ -193,4 +213,23 @@ ul .home{
     border-radius: 8px;
     width: 100%;
     object-fit: contain;
+}
+
+
+::-webkit-scrollbar {
+    width: 11px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.6);
 }
