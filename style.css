@@ -116,7 +116,10 @@ ul .home{
     height: 300px;
 
 }
+
+
 .options .Cplay{
+    color: white;
     background-color: black;
     width: 340px;
     height: 194px;
