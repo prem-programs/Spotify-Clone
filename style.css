@@ -192,7 +192,6 @@ ul .home{
 .card {
     position:relative;
     border-radius: 12px;
-    border: 1px solid red;
     width: 148px;
     padding: 13px;
 }
@@ -206,6 +205,9 @@ ul .home{
 
 .card:hover svg{  
     opacity: 100%;
+}
+.card:hover{
+    background-color: #0000001a;
 }
 
 
@@ -238,6 +240,7 @@ ul .home{
     background: rgba(255, 255, 255, 0.6);
 }
 .playbar{
+
     display: flex;
     gap: 12px;
     display: flex;
@@ -249,9 +252,37 @@ ul .home{
     height: 48px;
     padding: 19px;
     background-color: rgba(0, 0, 0, 0.58);
-}
-    
+    }
 
+.play {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.play svg {
+    width: 80px !important;
+    height: 80px !important;
+    display: block;
+}
+.prev, .next {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.prev svg, .next svg {
+    width: 24px !important;
+    height: 24px !important;
+    display: block;
+}
+
+.play{
+    cursor: pointer;
+}
 
 
 .thumb img{
