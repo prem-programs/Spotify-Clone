@@ -124,9 +124,10 @@ ul .home{
     color: white;
     background-color: black;
     width: 340px;
-    height: 194px;
+    height: 234px;
     margin-bottom: 10px;
     border-radius: 8px;
+    overflow-y: scroll;
 }
 .options .Bpodcast{
     background-color: black;
@@ -255,6 +256,13 @@ ul .home{
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.9) 100%);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
+.seekbar{
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    border:1px solid red;
+}
+
 
 .prev, .play, .next {
     display: flex;
@@ -312,4 +320,11 @@ ul .home{
     height: 54px;
     border-radius: 4px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+.songList li { 
+    border: 1px solid white;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    padding: 12px 0px;
 }
