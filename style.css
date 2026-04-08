@@ -245,12 +245,13 @@ ul .home{
 }
 .playbar{
     display: flex;
+    right: 1px;
     gap: 16px;
     align-items: center;
     justify-content: flex-start;
     position: absolute;
     bottom: 0;
-    width: 91%;
+    width: 96%;
     height: 43px;
     padding: 16px 19px;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.9) 100%);
@@ -258,9 +259,19 @@ ul .home{
 }
 .seekbar{
     position: absolute;
-    height: 2px;
+    height: 5px;
     width: 100%;
-    border:1px solid red;
+    background-color: #1db954;
+    top: 0;
+    right: 1px;
+}
+.circle{
+    position: absolute;
+    top: -5px;
+    width: 15px;
+    height: 15px;
+    background-color: #169442;
+    border-radius: 10px;
 }
 
 
