@@ -96,14 +96,15 @@ ul .home{
 /* main */
 .left {
     width: 30vw;
-    height: 564px;
-    background-color: rgb(255, 255, 255);
-    border-radius: 8px;
+    height: 553px;
+    background-color: #121212;
+    border-radius: 8px 8px 0 0;
     margin-left: 4px;
 }
 .left .heading{
     width: 100%;
     height: 79px;
+    border-radius: 8px 8px 0 0;
     background-color: #121212;
 }
 .left.heading h3{
@@ -111,6 +112,7 @@ ul .home{
 }
 .left .options{
     overflow-y:scroll;
+    overflow-x: hidden;
     background-color: #121212;
     width: 100%;
     height: 300px;
@@ -133,6 +135,7 @@ ul .home{
     border-radius: 8px;
 }
 .guide{
+    background-color: #121212;
     color: grey;
     padding: 20px 10px 0px 13px;
     display: flex;
@@ -151,8 +154,7 @@ ul .home{
     font-size:small;
     font-weight: 200;
 }
-.guide2 .button{
-
+.guide.button{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -164,7 +166,7 @@ ul .home{
     top: 61px;
     right: 265px;
 }
-.guide2 a {
+.guide a {
     color: rgb(198, 162, 162);
     margin-left: 10px;
     text-decoration: none;
@@ -174,10 +176,11 @@ ul .home{
 }
 
 .right{
+    margin-left: 8px;
     padding: 28px 0px 44px 44px;
     border-radius: 8px;
     width: 70vw;
-    height: 491px;
+    height: 486px;
     background-color: rgb(255, 255, 255);
     position: relative;
 }
@@ -240,52 +243,73 @@ ul .home{
     background: rgba(255, 255, 255, 0.6);
 }
 .playbar{
-
     display: flex;
-    gap: 12px;
-    display: flex;
+    gap: 16px;
     align-items: center;
-    /* justify-content: center; */
+    justify-content: flex-start;
     position: absolute;
     bottom: 0;
     width: 91%;
-    height: 48px;
-    padding: 19px;
-    background-color: rgba(0, 0, 0, 0.58);
-    }
+    height: 43px;
+    padding: 16px 19px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.9) 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-.play {
-    width: 80px;
-    height: 80px;
+.prev, .play, .next {
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 50%;
 }
-.play svg {
-    width: 80px !important;
-    height: 80px !important;
-    display: block;
-}
+
 .prev, .next {
     width: 48px;
     height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    color: white;
 }
-.prev svg, .next svg {
-    width: 24px !important;
-    height: 24px !important;
+
+.prev:hover, .next:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+}
+
+.play {
+    width: 56px;
+    height: 56px;
+    background-color: #1DB954;
+    color: black;
+}
+
+.play:hover {
+    background-color: #1ed760;
+    transform: scale(1.08);
+}
+
+.play svg {
+    width: 40px;
+    height: 40px;
     display: block;
 }
 
-.play{
-    cursor: pointer;
+.prev svg, .next svg {
+    width: 24px;
+    height: 24px;
+    display: block;
 }
 
+.thumb {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
 
 .thumb img{
-    width: 50px;
-    height: 50px;
+    width: 54px;
+    height: 54px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
