@@ -99,7 +99,8 @@ async function main() {
 
     let songUl = document.querySelector(".songList").getElementsByTagName("ul")[0];
     songUl.innerHTML = ""; // Clear existing list
-    for (const song of songs) {
+    for (let i = 0; i < songs.length; i++) {
+        const song = songs[i];
         let fileName = song.replace(/^.*[\\/]/, "").trim();
         let displayName = fileName.replaceAll(".mp3", "").trim();
         let li = document.createElement("li");
@@ -126,10 +127,7 @@ async function main() {
             if (playlistAudio) {
                 playlistAudio.pause();
             }
-            currentSongIndex = songs.indexOf(fileName);
-            if (currentSongIndex < 0) {
-                currentSongIndex = 0;
-            }
+            currentSongIndex = i;
             playlistAudio = createAudio(songs[currentSongIndex]);
             playlistAudio.play();
             setPlayIcon(true);
