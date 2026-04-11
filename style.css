@@ -107,7 +107,7 @@ ul .home{
     border-radius: 8px 8px 0 0;
     background-color: #121212;
 }
-.left.heading h3{
+.heading h3{
     color: white;
 }
 .left .options{
@@ -263,19 +263,22 @@ ul .home{
 }
 .seekbar{
     position: absolute;
-    height: 5px;
-    width: 100%;
-    background-color: #1db954;
-    top: 0;
+    height: 2px;
+    width: 99%;
+    border: 2px solid #1db954;
+    top: -7px;
     right: 1px;
 }
+
 .circle{
     position: absolute;
-    top: -5px;
-    width: 15px;
-    height: 15px;
+    top: -7px;
+    width: 17px;
+    height: 17px;
     background-color: #169442;
     border-radius: 10px;
+    left: 10%;
+    transition: left 0.5s;
 }
 
 
