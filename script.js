@@ -26,6 +26,9 @@ let playlistAudio = null;
 let currentSongIndex = -1;
 let songs = [];
 let playBtn = null;
+let seekbar = null;
+let seekCircle = null;
+let isSeeking = false;
 
 const playSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40" fill="black">
                     <path d="M8 5v14l11-7z" />
@@ -41,6 +44,65 @@ function setPlayIcon(isPlaying) {
     }
 }
 
+function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+}
+
+function updateSeekbarFromAudio() {
+    if (!playlistAudio || isSeeking || !seekCircle || playlistAudio.duration <= 0) return;
+    const rect = seekbar.getBoundingClientRect();
+    const handleWidth = seekCircle.offsetWidth;
+    const availableWidth = rect.width - handleWidth;
+    const percent = clamp(playlistAudio.currentTime / playlistAudio.duration, 0, 1);
+    seekCircle.style.left = `${percent * availableWidth}px`;
+}
+
+function seekAudioToPosition(clientX) {
+    if (!seekbar || !seekCircle) return;
+    const rect = seekbar.getBoundingClientRect();
+    const handleWidth = seekCircle.offsetWidth;
+    const availableWidth = rect.width - handleWidth;
+    const offsetX = clamp(clientX - rect.left - handleWidth / 2, 0, availableWidth);
+    const percent = offsetX / availableWidth;
+
+    seekCircle.style.left = `${offsetX}px`;
+    if (playlistAudio && playlistAudio.duration > 0) {
+        playlistAudio.currentTime = percent * playlistAudio.duration;
+    }
+}
+
+function bindSeekbarEvents() {
+    if (!seekbar || !seekCircle) return;
+    seekbar.style.cursor = "pointer";
+    seekCircle.style.cursor = "grab";
+
+    const startSeek = (event) => {
+        event.preventDefault();
+        isSeeking = true;
+        seekCircle.setPointerCapture(event.pointerId);
+        seekCircle.style.cursor = "grabbing";
+        seekAudioToPosition(event.clientX);
+    };
+
+    const moveSeek = (event) => {
+        if (!isSeeking) return;
+        seekAudioToPosition(event.clientX);
+    };
+
+    const endSeek = (event) => {
+        if (!isSeeking) return;
+        isSeeking = false;
+        seekCircle.style.cursor = "grab";
+        seekAudioToPosition(event.clientX);
+    };
+
+    seekbar.addEventListener("pointerdown", startSeek);
+    seekCircle.addEventListener("pointerdown", startSeek);
+    window.addEventListener("pointermove", moveSeek);
+    window.addEventListener("pointerup", endSeek);
+    window.addEventListener("pointercancel", endSeek);
+}
+
 function createAudio(track) {
     const normalizedTrack = track.replace(/\\/g, "/").replace(/^\/+/, "");
     const encodedPath = normalizedTrack.split("/").map(encodeURIComponent).join("/");
@@ -50,6 +112,12 @@ function createAudio(track) {
     audio.preload = "auto";
     audio.addEventListener("error", () => {
         console.error("Audio load failed for:", track, "/ normalized:", normalizedTrack, "/ url:", `/songs/${encodedPath}`, audio.error);
+    });
+    audio.addEventListener("loadedmetadata", () => {
+        updateSeekbarFromAudio();
+    });
+    audio.addEventListener("timeupdate", () => {
+        updateSeekbarFromAudio();
     });
     audio.addEventListener("ended", () => {
         if (currentSongIndex + 1 < songs.length) {
@@ -138,6 +206,9 @@ async function main() {
 
     console.log("Playlist ready. Click a song or press play to start.");
     playBtn = document.querySelector(".play");
+    seekbar = document.querySelector(".seekbar");
+    seekCircle = document.querySelector(".circle");
+    bindSeekbarEvents();
 
     if (playBtn) {
         setPlayIcon(false);

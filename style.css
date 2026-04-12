@@ -263,22 +263,24 @@ ul .home{
 }
 .seekbar{
     position: absolute;
-    height: 2px;
+    height: 6px;
     width: 99%;
-    border: 2px solid #1db954;
-    top: -7px;
+    background-color: rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    top: -6px;
     right: 1px;
 }
 
 .circle{
     position: absolute;
-    top: -7px;
+    top: -6px;
     width: 17px;
     height: 17px;
     background-color: #169442;
-    border-radius: 10px;
-    left: 10%;
-    transition: left 0.5s;
+    border-radius: 50%;
+    left: 0;
+    transition: left 0.08s ease;
+    box-shadow: 0 0 8px rgba(25, 150, 80, 0.35);
 }
 
 
