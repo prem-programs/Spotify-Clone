@@ -54,6 +54,9 @@ function updateSeekbarFromAudio() {
     const handleWidth = seekCircle.offsetWidth;
     const availableWidth = rect.width - handleWidth;
     const percent = clamp(playlistAudio.currentTime / playlistAudio.duration, 0, 1);
+     seekbar.style.background =
+        `linear-gradient(to right, #1db954 ${percent*100}%, #444 ${percent*100}%)`;
+
     seekCircle.style.left = `${percent * availableWidth}px`;
 }
 
@@ -64,6 +67,10 @@ function seekAudioToPosition(clientX) {
     const availableWidth = rect.width - handleWidth;
     const offsetX = clamp(clientX - rect.left - handleWidth / 2, 0, availableWidth);
     const percent = offsetX / availableWidth;
+    
+    seekbar.style.background =
+        `linear-gradient(to right, #1db954 ${percent*100}%, #444 ${percent*100}%)`;
+
 
     seekCircle.style.left = `${offsetX}px`;
     if (playlistAudio && playlistAudio.duration > 0) {
@@ -103,6 +110,16 @@ function bindSeekbarEvents() {
     window.addEventListener("pointercancel", endSeek);
 }
 
+// const seekbar = document.getElementById(".seekbar");
+// // function updateSeekbarbg(){
+// //     const value = seekbar.value()
+// //     const max = seekbar.max()
+// //     let percent = (value/max)*100;
+// //     seekbar.style.background =
+// //         `linear-gradient(to right, #1db954 ${percent}%, #444 ${percent}%)`;
+// //         seekbar.addEventListener("input",updateSeekbarbg)
+// //         updateSeekbarbg();
+// // }
 function createAudio(track) {
     const normalizedTrack = track.replace(/\\/g, "/").replace(/^\/+/, "");
     const encodedPath = normalizedTrack.split("/").map(encodeURIComponent).join("/");
@@ -191,7 +208,7 @@ async function main() {
             </div>
         `;
         // Add click event to play this song
-        li.addEventListener("click", function() {
+        li.addEventListener("click", function () {
             if (playlistAudio) {
                 playlistAudio.pause();
             }
