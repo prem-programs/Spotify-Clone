@@ -259,6 +259,7 @@ ul .home{
     height: 69px;
     background: linear-gradient(180deg, rgb(0 0 0) 0%, rgb(0 0 0) 100%);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-left: -9px;
 }
 
 .seekbar{
@@ -349,3 +350,11 @@ ul .home{
     padding: 12px 0px;
 }
 
+#pArt img{
+    width: 140px;
+    height: 140px;
+    border-radius: 100px;
+}
+.Pcontainer{
+    display: flex;
+}
