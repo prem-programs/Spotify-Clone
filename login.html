@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        background: #121212;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        width: 350px;
+        text-align: center;
+    }
+
+    .logo {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        font-size: 32px;
+        margin-bottom: 25px;
+    }
+
+    label {
+        display: block;
+        text-align: left;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 5px;
+        border: 1px solid #333;
+        background-color:#121212 ;
+        color: white;
+        margin-bottom: 20px;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: white;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 14px;
+        border-radius: 30px;
+        border: none;
+        background: #1db954;
+        color: black;
+        font-weight: bold;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+
+    .divider {
+        margin: 15px 0;
+        color: #aaa;
+    }
+
+    .social-btn {
+        width: 100%;
+        padding: 12px;
+        border-radius: 30px;
+        border: 1px solid #444;
+        background: transparent;
+        color: white;
+        margin-bottom: 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .social-btn:hover {
+        border-color: white;
+    }
+    .logo img{
+        filter: invert();
+    }
+    .signup{
+        margin-top: 20px;
+
+    }
+    .signup a{
+        text-decoration: none;
+        font-weight: bolder;
+        color:white
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="logo">
+        <img src="logo.svg" alt="">
+    </div>
+    <h1>Welcome back</h1>
+
+    <label>Email</label>
+    <input type="email" placeholder="Enter your email">
+
+    <button class="btn">Continue</button>
+
+    <div class="divider">or</div>
+
+    <button class="social-btn"> Continue with phone number</button>
+    <button class="social-btn"> Continue with Google</button>
+    <button class="social-btn"> Continue with Facebook</button>
+    <button class="social-btn"> Continue with Apple</button>
+
+
+    
+    <div class="signup">
+        <p>Don't have an account?</p></span>
+        <a href="#">Sign up</a>
+    </div>
+</div>
+
+</body>
+</html>
