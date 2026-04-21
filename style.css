@@ -86,11 +86,17 @@ ul .home{
     background: #000000;
     padding: 10px;
     border-radius: 30px;
+    width: 74px;
     cursor: pointer;
+    height: 25px;
     color: #aaa;
     display: flex;
     justify-content: center;
-    padding: 10px;
+    align-items: center;
+}
+.login a{
+    text-decoration: none;
+    color: white;
 }
 
 /* main */

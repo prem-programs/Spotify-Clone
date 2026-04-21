@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            margin-top: 100px;
+            width: 350px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 44px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            font-size: 12px;
+            margin-bottom: 8px;
+            color: #b3b3b3;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 6px;
+            border: 1px solid #333;
+            background:black;
+            color: #fff;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: white;
+        }
+
+        .primary-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 25px;
+            border: none;
+            background: #1db954;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .primary-btn:hover {
+            background: #1ed760;
+        }
+
+        .divider {
+            margin: 15px 0;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .outline-btn {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 25px;
+            border: 1px solid #555;
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .outline-btn:hover {
+            border-color: #fff;
+        }
+
+        .login-text {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        .login-text a {
+            color: #fff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 10px;
+            color: #666;
+        }
+        .logo img{
+            filter: invert();
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="logo">
+            <img src="logo.svg" alt="">
+        </div>
+
+        <h1>Sign up to<br>start listening</h1>
+
+        <label>Email address</label>
+        <input type="email" placeholder="name@domain.com">
+
+        <button class="primary-btn">Next</button>
+
+        <div class="divider">or</div>
+
+        <button class="outline-btn">Sign up with phone number</button>
+        <button class="outline-btn">Sign up with Google</button>
+        <button class="outline-btn">Sign up with Apple</button>
+
+        <p class="login-text">
+            Already have an account?<br><br>
+            <a href="login.html">Log in</a>
+        </p>
+
+        <p class="footer">
+            This site is protected by reCAPTCHA and the Google<br>
+            Privacy Policy and Terms of Service apply.
+        </p>
+    </div>
+
+</body>
+
+</html>
