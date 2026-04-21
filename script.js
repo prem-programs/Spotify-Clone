@@ -54,8 +54,8 @@ function updateSeekbarFromAudio() {
     const handleWidth = seekCircle.offsetWidth;
     const availableWidth = rect.width - handleWidth;
     const percent = clamp(playlistAudio.currentTime / playlistAudio.duration, 0, 1);
-     seekbar.style.background =
-        `linear-gradient(to right, #1db954 ${percent*100}%, #444 ${percent*100}%)`;
+    seekbar.style.background =
+        `linear-gradient(to right, #1db954 ${percent * 100}%, #444 ${percent * 100}%)`;
 
     seekCircle.style.left = `${percent * availableWidth}px`;
 }
@@ -67,10 +67,9 @@ function seekAudioToPosition(clientX) {
     const availableWidth = rect.width - handleWidth;
     const offsetX = clamp(clientX - rect.left - handleWidth / 2, 0, availableWidth);
     const percent = offsetX / availableWidth;
-    
-    seekbar.style.background =
-        `linear-gradient(to right, #1db954 ${percent*100}%, #444 ${percent*100}%)`;
 
+    seekbar.style.background =
+        `l inear-gradient(to right, #1db954 ${percent * 100}%, #444 ${percent * 100}%)`;
 
     seekCircle.style.left = `${offsetX}px`;
     if (playlistAudio && playlistAudio.duration > 0) {
@@ -110,16 +109,6 @@ function bindSeekbarEvents() {
     window.addEventListener("pointercancel", endSeek);
 }
 
-// const seekbar = document.getElementById(".seekbar");
-// // function updateSeekbarbg(){
-// //     const value = seekbar.value()
-// //     const max = seekbar.max()
-// //     let percent = (value/max)*100;
-// //     seekbar.style.background =
-// //         `linear-gradient(to right, #1db954 ${percent}%, #444 ${percent}%)`;
-// //         seekbar.addEventListener("input",updateSeekbarbg)
-// //         updateSeekbarbg();
-// // }
 function createAudio(track) {
     const normalizedTrack = track.replace(/\\/g, "/").replace(/^\/+/, "");
     const encodedPath = normalizedTrack.split("/").map(encodeURIComponent).join("/");
@@ -177,6 +166,8 @@ function togglePlayback() {
     }
 }
 
+
+
 async function main() {
     let currentSong = null;
     // get songs
@@ -231,6 +222,39 @@ async function main() {
         setPlayIcon(false);
         playBtn.addEventListener("click", togglePlayback);
     }
+    prev = document.querySelector(".prev")
+    // add event listerner to prev and next
+    prev.addEventListener("click", () => {
+        
+        if (playlistAudio){
+            playlistAudio.pause()
+        }
+        currentSongIndex -=1
+        
+        if ((currentSongIndex-1)>=0){
+            playlistAudio = createAudio(songs[currentSongIndex]);
+            playlistAudio.play();
+            setPlayIcon(true)
+        }
+        
+    });
+
+    next = document.querySelector(".next")
+    next.addEventListener("click", () => {
+        if (playlistAudio){
+            playlistAudio.pause()
+        } 
+        currentSongIndex +=1;
+        if ((currentSongIndex+1)>song.length){
+            playlistAudio = createAudio(songs[currentSongIndex]);
+            playlistAudio.play();
+            setPlayIcon(true)
+        }
+        else{
+            playlistAudio.pause()
+        }
+    });
+
 }
 
 main()
