@@ -1,9 +1,10 @@
 from flask import Flask, render_template, url_for, jsonify
+from form import SignupForm
 import os
 
 
 app = Flask(__name__)
-
+app.config['SECRET_KEY'] = '229554709483d58b9a692ad6'
 
 @app.route('/')
 def main():
@@ -12,13 +13,13 @@ def main():
 @app.route('/login')
 def login_page():
 
+    return render_template('login.html')
 
-    return render_template('login.html',form=form)
-@app.route('/signup')
+@app.route('/signup',methods= ['GET','POST'])
 def signup():
+    form = SignupForm()
 
-
-    return render_template('signup')
+    return render_template('signup.html',form=form)
 
 
 @app.route('/songs')

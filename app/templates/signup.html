@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Signup</title>
+
     <style>
         * {
             margin: 0;
@@ -18,22 +18,22 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         .container {
-            margin-top: 100px;
-            width: 350px;
+            width: 360px;
             text-align: center;
         }
 
-        .logo {
-            font-size: 30px;
+        .logo img {
+            width: 40px;
+            filter: invert();
             margin-bottom: 20px;
         }
 
         h1 {
-            font-size: 44px;
+            font-size: 40px;
             font-weight: 700;
             margin-bottom: 30px;
         }
@@ -41,23 +41,23 @@
         label {
             display: block;
             text-align: left;
-            font-size: 12px;
-            margin-bottom: 8px;
+            font-size: 13px;
+            margin-bottom: 6px;
             color: #b3b3b3;
         }
 
-        input {
+        .custom-input {
             width: 100%;
             padding: 14px;
             border-radius: 6px;
             border: 1px solid #333;
-            background:black;
+            background: black;
             color: #fff;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             outline: none;
         }
 
-        input:focus {
+        .custom-input:focus {
             border-color: white;
         }
 
@@ -70,7 +70,7 @@
             color: #000;
             font-weight: bold;
             cursor: pointer;
-            margin-bottom: 20px;
+            margin-top: 10px;
         }
 
         .primary-btn:hover {
@@ -78,7 +78,7 @@
         }
 
         .divider {
-            margin: 15px 0;
+            margin: 20px 0;
             color: #aaa;
             font-size: 14px;
         }
@@ -92,7 +92,6 @@
             background: transparent;
             color: #fff;
             cursor: pointer;
-            font-weight: 500;
         }
 
         .outline-btn:hover {
@@ -111,49 +110,71 @@
             text-decoration: none;
         }
 
-        .footer {
-            margin-top: 20px;
-            font-size: 10px;
-            color: #666;
-        }
-        .logo img{
-            filter: invert();
+        .error {
+            color: red;
+            font-size: 12px;
+            text-align: left;
+            margin-bottom: 10px;
         }
     </style>
-
 </head>
 
 <body>
 
-    <div class="container">
-        <div class="logo">
-            <img src="" alt="">
-        </div>
+<div class="container">
 
-        <h1>Sign up to<br>start listening</h1>
-
-        <label>Email address</label>
-        <input type="email" placeholder="name@domain.com">
-
-        <button class="primary-btn">Next</button>
-
-        <div class="divider">or</div>
-
-        <button class="outline-btn">Sign up with phone number</button>
-        <button class="outline-btn">Sign up with Google</button>
-        <button class="outline-btn">Sign up with Apple</button>
-
-        <p class="login-text">
-            Already have an account?<br><br>
-            <a href="login.html">Log in</a>
-        </p>
-
-        <p class="footer">
-            This site is protected by reCAPTCHA and the Google<br>
-            Privacy Policy and Terms of Service apply.
-        </p>
+    <div class="logo">
+        <img src="{{ url_for('static', filename='images/logo.svg') }}">
     </div>
 
-</body>
+    <h1>Sign up to<br>start listening</h1>
 
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <!-- Username -->
+        <label>Username</label>
+        {{ form.username(class="custom-input", placeholder="Enter username") }}
+        {% for error in form.username.errors %}
+            <div class="error">{{ error }}</div>
+        {% endfor %}
+
+        <!-- Email -->
+        <label>Email address</label>
+        {{ form.email(class="custom-input", placeholder="name@domain.com") }}
+        {% for error in form.email.errors %}
+            <div class="error">{{ error }}</div>
+        {% endfor %}
+
+        <!-- Password -->
+        <label>Password</label>
+        {{ form.password(class="custom-input", placeholder="Enter password") }}
+        {% for error in form.password.errors %}
+            <div class="error">{{ error }}</div>
+        {% endfor %}
+
+        <!-- Confirm Password -->
+        <label>Confirm Password</label>
+        {{ form.cPassword(class="custom-input", placeholder="Confirm password") }}
+        {% for error in form.cPassword.errors %}
+            <div class="error">{{ error }}</div>
+        {% endfor %}
+
+        {{ form.submit(class="primary-btn", value="Sign up") }}
+    </form>
+
+    <div class="divider">or</div>
+
+    <button class="outline-btn">Sign up with phone number</button>
+    <button class="outline-btn">Sign up with Google</button>
+    <button class="outline-btn">Sign up with Apple</button>
+
+    <p class="login-text">
+        Already have an account?<br><br>
+        <a href="{{ url_for('login_page') }}">Log in</a>
+    </p>
+
+</div>
+
+</body>
 </html>

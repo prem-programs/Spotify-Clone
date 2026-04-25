@@ -39,7 +39,10 @@
                     <div id="line"></div>
                 </li>
                 <li id="install"><img src="{{ url_for('static', filename='images/install.svg') }}" alt="install">Install App</li>
-                <li>Sign up</li>
+                <li>
+                    <div class="signup" style="color: white;">
+                        <a href="{{ url_for('signup') }}">Sign up</a></div>
+                </li>
                 <li style="color: black; background-color: white;">
                     <div class="login">
                         <a href="{{ url_for('login_page') }}">Log in</a></div>
