@@ -1,25 +1,16 @@
 
 
 async function getSongs() {
-    let a = await fetch("http://127.0.0.1:3000/songs");
-    let response = await a.text();
-    let div = document.createElement("div");
-    div.innerHTML = response;
-    let as = div.getElementsByTagName("a");
-    let songs = [];
-
-    for (let index = 0; index < as.length; index++) {
-        const element = as[index];
-        const href = element.getAttribute("href") || element.href;
-        if (!href) continue;
-        const normalizedHref = href.replace(/\\/g, "/");
-        if (normalizedHref.endsWith(".mp3")) {
-            const fileName = decodeURIComponent(normalizedHref.split("/").pop());
-            songs.push(fileName);
-        }
+    try {
+        const res = await fetch('/songs');
+        if (!res.ok) return [];
+        const files = await res.json();
+        // return full static URLs for the client
+        return files.map(f => `/static/songs/${encodeURIComponent(f)}`);
+    } catch (err) {
+        console.error('Failed to fetch /songs', err);
+        return [];
     }
-
-    return songs;
 }
 
 let playlistAudio = null;
@@ -69,7 +60,7 @@ function seekAudioToPosition(clientX) {
     const percent = offsetX / availableWidth;
 
     seekbar.style.background =
-        `l inear-gradient(to right, #1db954 ${percent * 100}%, #444 ${percent * 100}%)`;
+        `linear-gradient(to right, #1db954 ${percent * 100}%, #444 ${percent * 100}%)`;
 
     seekCircle.style.left = `${offsetX}px`;
     if (playlistAudio && playlistAudio.duration > 0) {
@@ -109,15 +100,13 @@ function bindSeekbarEvents() {
     window.addEventListener("pointercancel", endSeek);
 }
 
-function createAudio(track) {
-    const normalizedTrack = track.replace(/\\/g, "/").replace(/^\/+/, "");
-    const encodedPath = normalizedTrack.split("/").map(encodeURIComponent).join("/");
-    const audio = new Audio(`/${encodedPath}`);
+function createAudio(trackUrl) {
+    const audio = new Audio(trackUrl);
     audio.volume = 1;
     audio.muted = false;
     audio.preload = "auto";
     audio.addEventListener("error", () => {
-        console.error("Audio load failed for:", track, "/ normalized:", normalizedTrack, "/ url:", `/songs/${encodedPath}`, audio.error);
+        console.error("Audio load failed for:", trackUrl, audio.error);
     });
     audio.addEventListener("loadedmetadata", () => {
         updateSeekbarFromAudio();
@@ -177,7 +166,7 @@ async function main() {
     songUl.innerHTML = ""; // Clear existing list
     for (let i = 0; i < songs.length; i++) {
         const song = songs[i];
-        let fileName = song.replace(/^.*[\\/]/, "").trim();
+        let fileName = decodeURIComponent(song.split('/').pop()).trim();
         let displayName = fileName.replaceAll(".mp3", "").trim();
         let li = document.createElement("li");
         li.innerHTML = `
@@ -222,38 +211,40 @@ async function main() {
         setPlayIcon(false);
         playBtn.addEventListener("click", togglePlayback);
     }
-    prev = document.querySelector(".prev")
-    // add event listerner to prev and next
-    prev.addEventListener("click", () => {
-        
-        if (playlistAudio){
-            playlistAudio.pause()
-        }
-        currentSongIndex -=1
-        
-        if ((currentSongIndex-1)>=0){
-            playlistAudio = createAudio(songs[currentSongIndex]);
-            playlistAudio.play();
-            setPlayIcon(true)
-        }
-        
-    });
+    const prevBtn = document.querySelector(".prev");
+    const nextBtn = document.querySelector(".next");
+    // add event listener to prev and next
+    if (prevBtn) {
+        prevBtn.addEventListener("click", () => {
+            if (playlistAudio) playlistAudio.pause();
+            if (currentSongIndex > 0) {
+                currentSongIndex -= 1;
+                playlistAudio = createAudio(songs[currentSongIndex]);
+                playlistAudio.play();
+                setPlayIcon(true);
+            } else {
+                currentSongIndex = -1;
+                playlistAudio = null;
+                setPlayIcon(false);
+            }
+        });
+    }
 
-    next = document.querySelector(".next")
-    next.addEventListener("click", () => {
-        if (playlistAudio){
-            playlistAudio.pause()
-        } 
-        currentSongIndex +=1;
-        if ((currentSongIndex+1)>song.length){
-            playlistAudio = createAudio(songs[currentSongIndex]);
-            playlistAudio.play();
-            setPlayIcon(true)
-        }
-        else{
-            playlistAudio.pause()
-        }
-    });
+    if (nextBtn) {
+        nextBtn.addEventListener("click", () => {
+            if (playlistAudio) playlistAudio.pause();
+            if (currentSongIndex + 1 < songs.length) {
+                currentSongIndex += 1;
+                playlistAudio = createAudio(songs[currentSongIndex]);
+                playlistAudio.play();
+                setPlayIcon(true);
+            } else {
+                currentSongIndex = -1;
+                playlistAudio = null;
+                setPlayIcon(false);
+            }
+        });
+    }
 
 }
 

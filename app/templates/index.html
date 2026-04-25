@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="utility.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static' , filename='css/utility.css')}}">
 </head>
 
 <body>
@@ -15,18 +15,18 @@
             <ul>
                 <li>
                     <div class="logo">
-                        <img src="logo.svg" alt="spotify">
+                        <img src="{{ url_for('static',filename='images/logo.svg')}}" alt="spotify">
                     </div>
                 </li>
                 <li>
-                    <div class="home"><img src="home.svg" alt="home"></div>
+                    <div class="home"><img src="{{ url_for('static',filename='images/home.svg')}}" alt="home"></div>
                 </li>
                 <li>
                     <div class="outline ">
-                        <img src="search/search.svg" alt="search">
+                        <img src="{{ url_for('static',filename='images/search.svg')}}" alt="search">
                         <input type="text" placeholder="What do you want to play?">
                         <div class="line1"></div>
-                        <img src="search/send.svg" alt="send">
+                        <img src="{{ url_for('static',filename='images/send.svg')}}" alt="send">
                     </div>
                 </li>
                 <li id="links">
@@ -38,11 +38,11 @@
                 <li>
                     <div id="line"></div>
                 </li>
-                <li id="install"><img src="install.svg" alt="install">Install App</li>
+                <li id="install"><img src="{{ url_for('static', filename='images/install.svg') }}" alt="install">Install App</li>
                 <li>Sign up</li>
                 <li style="color: black; background-color: white;">
                     <div class="login">
-                        <a href="login.html">Log in</a></div>
+                        <a href="{{ url_for('login_page') }}">Log in</a></div>
                 </li>
             </ul>
         </div>
@@ -195,6 +195,6 @@
 
             </div>
 </body>
-<script src="script.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
 
 </html>

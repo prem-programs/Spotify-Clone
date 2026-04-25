@@ -110,7 +110,7 @@
 
 <div class="container">
     <div class="logo">
-        <img src="logo.svg" alt="">
+        <img src="{{ url_for('static',filename='images/logo.svg')}}" alt="logo">
     </div>
     <h1>Welcome back</h1>
 
@@ -130,7 +130,7 @@
     
     <div class="signup">
         <p>Don't have an account?</p></span>
-        <a href="signup.html">Sign up</a>
+        <a href="{{ url_for('signup')}}">Sign up</a>
     </div>
 </div>
 
