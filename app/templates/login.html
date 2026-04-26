@@ -114,8 +114,23 @@
     </div>
     <h1>Welcome back</h1>
 
-    <label>Email</label>
-    <input type="email" placeholder="Enter your email">
+    <form method="POST" class="form-register">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+            {{ form.user_name.label(class="form-label") }}
+            {{ form.user_name(class="form-control") }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.password.label(class="form-label") }}
+            {{ form.password(class="form-control") }}
+        </div>
+
+        <div class="d-grid">
+            {{ form.submit(class="btn btn-primary btn-lg") }}
+        </div>
+    </form>
 
     <button class="btn">Continue</button>
 

@@ -9,3 +9,6 @@ class SignupForm(FlaskForm):
     cPassword = PasswordField(label="confirm password")
     submit = SubmitField(label="Create Account")
     
+class LoginForm(FlaskForm):
+    email = StringField(label="email")
+    password = PasswordField(label="password")

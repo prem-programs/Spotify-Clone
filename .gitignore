@@ -1,2 +1,4 @@
 songs/*
 !songs/.gitkeep
+info.json
+.env
