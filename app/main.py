@@ -5,10 +5,9 @@ import json
 from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy 
 from sqlalchemy.exc import IntegrityError
-from flask_login import login_user
+from flask_login import LoginManager, login_user
 from flask_bcrypt import Bcrypt
 from flask_login import UserMixin
-from app import db,login_manager
 
 load_dotenv()
 
@@ -17,11 +16,15 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user.db'
 app.config['SECRET_KEY'] =os.getenv("SECRET_KEY")
 bcrypt = Bcrypt(app)
 db = SQLAlchemy(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
 
 #model
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
 class User(db.Model,UserMixin):
     id = db.Column(db.Integer(),primary_key=True)
     username = db.Column(db.String(length = 30) , nullable = False,unique = True)
