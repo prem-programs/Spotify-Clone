@@ -2,3 +2,5 @@ songs/*
 !songs/.gitkeep
 info.json
 .env
+venv/
+*.db
