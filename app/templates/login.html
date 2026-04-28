@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #121212;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 350px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            background-color: #121212;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: white;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 30px;
+            border: none;
+            background: #1db954;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .divider {
+            margin: 15px 0;
+            color: #aaa;
+        }
+
+        .social-btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 30px;
+            border: 1px solid #444;
+            background: transparent;
+            color: white;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .social-btn:hover {
+            border-color: white;
+        }
+
+        .logo img {
+            filter: invert();
+        }
+
+        .signup {
+            margin-top: 20px;
+
+        }
+
+        .signup a {
+            text-decoration: none;
+            font-weight: bolder;
+            color: white
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="logo">
+            <img src="{{ url_for('static',filename='images/logo.svg')}}" alt="logo">
+        </div>
+        <h1>Welcome back</h1>
+
+        <form method="POST" class="form-register">
+            {{ form.hidden_tag() }}
+
+            <div class="mb-3">
+                {{ form.username.label(class="form-label") }}
+                {{ form.username(class="form-control") }}
+            </div>
+
+            <div class="mb-3">
+                {{ form.password.label(class="form-label") }}
+                {{ form.password(class="form-control") }}
+            </div>
+
+            <div class="d-grid">
+                {{ form.submit(class="btn btn-primary btn-lg") }}
+            </div>
+        </form>
+
+
+        <div class="divider">or</div>
+
+        <button class="social-btn"> Continue with phone number</button>
+        <button class="social-btn">
+            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M22.1 12.2272C22.1 11.5182 22.0364 10.8363 21.9182 10.1818H12.5V14.05H17.8818C17.65 15.3 16.9455 16.3591 15.8864 17.0682V19.5772H19.1182C21.0091 17.8363 22.1 15.2727 22.1 12.2272Z"
+                    fill="#4285F4"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M12.4998 21.9999C15.1998 21.9999 17.4635 21.1045 19.118 19.5772L15.8862 17.0681C14.9907 17.6681 13.8453 18.0227 12.4998 18.0227C9.89529 18.0227 7.69075 16.2636 6.90439 13.8999H3.56348V16.4908C5.20893 19.759 8.59075 21.9999 12.4998 21.9999Z"
+                    fill="#34A853"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M6.90455 13.9C6.70455 13.3 6.59091 12.6591 6.59091 12C6.59091 11.3409 6.70455 10.7 6.90455 10.1V7.50909H3.56364C2.88636 8.85909 2.5 10.3864 2.5 12C2.5 13.6136 2.88636 15.1409 3.56364 16.4909L6.90455 13.9Z"
+                    fill="#FBBC05"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M12.4998 5.97727C13.968 5.97727 15.2862 6.48182 16.3226 7.47273L19.1907 4.60455C17.4589 2.99091 15.1953 2 12.4998 2C8.59075 2 5.20893 4.24091 3.56348 7.50909L6.90439 10.1C7.69075 7.73636 9.89529 5.97727 12.4998 5.97727Z"
+                    fill="#EA4335"></path>
+            </svg>
+            Continue with Google</button>
+        <button class="social-btn"> Continue with Facebook</button>
+        <button class="social-btn"> Continue with Apple</button>
+
+
+
+        <div class="signup">
+            <p>Don't have an account?</p></span>
+            <a href="{{ url_for('signup')}}">Sign up</a>
+        </div>
+    </div>
+
+</body>
+
+</html>
