@@ -22,6 +22,7 @@
         }
 
         .container {
+            height: 400px;
             width: 350px;
             text-align: center;
         }
@@ -32,7 +33,7 @@
         }
 
         h1 {
-            font-size: 32px;
+            font-size: 50px;
             margin-bottom: 25px;
         }
 
@@ -71,7 +72,7 @@
         }
 
         .divider {
-            margin: 15px 0;
+            margin: -14px 0px 11px 0px;
             color: #aaa;
         }
 
@@ -141,7 +142,7 @@
         <div class="divider">or</div>
 
         <button class="social-btn"> Continue with phone number</button>
-        <button class="social-btn">
+        <button class="social-btn" id="Lgoogle-btn">
             <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd"
                     d="M22.1 12.2272C22.1 11.5182 22.0364 10.8363 21.9182 10.1818H12.5V14.05H17.8818C17.65 15.3 16.9455 16.3591 15.8864 17.0682V19.5772H19.1182C21.0091 17.8363 22.1 15.2727 22.1 12.2272Z"
@@ -168,6 +169,8 @@
         </div>
     </div>
 
+    <!-- Our script -->
+    <script type="module" src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 
 </html>

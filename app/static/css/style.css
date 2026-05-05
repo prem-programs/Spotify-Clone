@@ -359,13 +359,12 @@ ul .home{
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 .songList li { 
-    border: 1px solid white;
+    
     display: flex;
-    justify-content:space-between;
+    justify-content:space-around;
     align-items: center;
     padding: 12px 0px;
 }
-
 #pArt img{
     width: 160px;
     height: 160px;

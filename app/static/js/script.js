@@ -1,3 +1,111 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyCRpmh5ncsdBH_0pWo8E1sZOfGxHcgkdZI",
+    authDomain: "spotify-a21fc.firebaseapp.com",
+    projectId: "spotify-a21fc",
+    storageBucket: "spotify-a21fc.firebasestorage.app",
+    messagingSenderId: "675232445615",
+    appId: "1:675232445615:web:ad14e3f9d645df38e0d05a",
+    measurementId: "G-J3VYNX907N"
+};
+// initialising firebase ad 
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+
+// Auth button element
+const authBtn = document.getElementById("google-btn");
+const Lbutton =  document.getElementById("Lgoogle-btn");
+const navLoginBtn = document.querySelector(".login a");
+
+// Handle button click - toggles between login and logout
+if (authBtn) {
+    authBtn.addEventListener("click", (e) => {
+        e.preventDefault(); // Prevent default link navigation
+        const user = auth.currentUser;
+        
+        if (user) {
+            // User is logged in - sign out
+            signOut(auth)
+                .then(() => {
+                    console.log("Logged out!");
+                })
+                .catch((error) => console.log(error.message));
+        } else {
+            // User is not logged in - sign in with Google
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    console.log("Logged in!", result.user);
+                    window.location.href = "/";
+                })
+                .catch((error) => console.log(error.message));
+        }
+    });
+} else {
+    console.error("google-btn element not found");
+}
+if (Lbutton) {
+    Lbutton.addEventListener("click", (e) => {
+        e.preventDefault(); // Prevent default link navigation
+        const user = auth.currentUser;
+        
+        if (user) {
+            // User is logged in - sign out
+            signOut(auth)
+                .then(() => {
+                    console.log("Logged out!");
+                })
+                .catch((error) => console.log(error.message));
+        } else {
+            // User is not logged in - sign in with Google
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    console.log("Logged in!", result.user);
+                    window.location.href = "/";
+                })
+                .catch((error) => console.log(error.message));
+        }
+    });
+} else {
+    console.error("Lgoogle-btn element not found");
+}
+
+if (navLoginBtn) {
+    navLoginBtn.addEventListener("click", (e) => {
+        const user = auth.currentUser;
+        if (user) {
+            e.preventDefault();
+            signOut(auth)
+                .then(() => {
+                    console.log("Logged out!");
+                })
+                .catch((error) => console.log(error.message));
+        }
+    });
+}
+
+// Listen for auth state changes
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        // User is logged in
+        console.log("User logged in:", user.displayName);
+        if (navLoginBtn) {
+            navLoginBtn.textContent = "Logout";
+            navLoginBtn.removeAttribute("href");
+        }
+    } else {
+        // User is logged out
+        console.log("User logged out");
+        if (navLoginBtn) {
+            navLoginBtn.textContent = "Log in";
+            navLoginBtn.href = "/login";
+        }
+    }
+});
 
 
 async function getSongs() {
@@ -180,13 +288,7 @@ async function main() {
             <div class="info">
                 <div>${displayName}</div>
                 <div>Artist name</div>
-            </div>
-            <div class="playnow">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40" fill="white">
-                    <path d="M8 5v14l11-7z" />
-                </svg>
-            </div>
-        `;
+            </div>`;
         // Add click event to play this song
         li.addEventListener("click", function () {
             if (playlistAudio) {
